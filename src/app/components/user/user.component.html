@@ -1,0 +1,49 @@
+<!-- 数据绑定 -->
+<ul>
+    <li>姓名：{{name}}</li>
+    <li>年龄：{{age}}</li>
+    <li>地址：{{address.city}}{{address.state}}{{address.stree}}</li>
+</ul>
+<!-- 循环 -->
+<ul>
+    <li *ngFor="let item of hobbies; let index = 'index'">
+    {{index + 1}}：{{item}} <button (click)="del(index)">X</button>
+    </li>
+</ul>
+<!-- 事件 -->
+<button (click)="testClick()">点击事件</button>
+<!-- 表单 -->
+<form (submit)="addHobbies(hobby.value)">
+    <div>
+        <label for="hobby">爱好</label>
+        <input type="text" #hobby>
+    </div>
+</form>
+<hr>
+<button (click)="edit()">编辑用户</button>
+<!-- 双向数据绑定 -->
+<div *ngIf="isEdit">
+    <h4>编辑用户信息</h4>
+    <form>
+        <div>
+            <label for="name">姓名：</label>
+            <input type="text" [(ngModel)]="name" name="name">
+        </div>
+        <div>
+            <label for="age">年龄：</label>
+            <input type="text" [(ngModel)]="age" name="age">
+        </div>
+        <div>
+            <label for="city">城市：</label>
+            <input type="text" [(ngModel)]="address.city" name="city">
+        </div>
+        <div>
+            <label for="state">区：</label>
+            <input type="text" [(ngModel)]="address.state" name="state">
+        </div>
+        <div>
+            <label for="stree">街道：</label>
+            <input type="text" [(ngModel)]="address.stree" name="stree">
+        </div>
+    </form>
+</div>

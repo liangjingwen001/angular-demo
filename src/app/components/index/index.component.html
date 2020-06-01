@@ -1,0 +1,5 @@
+<div *ngFor="let item of dataList">
+  <h4>{{item.title}}</h4>
+  <p>{{item.newsContent}} <button (click)="delNews(item._id)">删除</button></p>
+</div>
+<a href="#" routerLink="/detail">新增</a>

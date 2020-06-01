@@ -6,6 +6,7 @@ import { DataService } from '../../services/services.service'
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
   name: String;
   age: number;

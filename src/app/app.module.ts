@@ -1,34 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { RouterModule,Routes} from '@angular/router'
+
+import { DataService } from './services/services.service';
+import { NewsDataService } from './services/news-data.service';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
-import { DataService } from './services/services.service';
 import { DetailComponent } from './components/detail/detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { IndexComponent } from './components/index/index.component';
 
 const appRoutes:Routes = [
-  {path:"",component:UserComponent},
+  {path:"",component:LoginComponent},
+  {path:"index",component:IndexComponent},
   {path:"detail",component:DetailComponent}
 ]
 
 @NgModule({
-  declarations: [
+  declarations: [  // 自定义模块
     AppComponent,
     UserComponent,
-    DetailComponent
+    DetailComponent,
+    LoginComponent,
+    IndexComponent
   ],
-  imports: [
+  imports: [  // 第三方模块
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DataService],
-  // 将组件显示在index.html
+  providers: [  // 数据提供器
+    DataService,
+    NewsDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

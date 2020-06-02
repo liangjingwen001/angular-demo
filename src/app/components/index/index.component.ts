@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/services.service';
 import { NewsDataService } from '../../services/news-data.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -11,8 +12,12 @@ export class IndexComponent implements OnInit {
   token:string;
   dataList:[];
 
-  constructor(public dataService:DataService, public newsDataService:NewsDataService) {
-    this.token = this.dataService.getToken();
+  constructor(
+    public dataService:DataService,
+    public newsDataService:NewsDataService,
+    public router:Router,
+    ) {
+      this.token = this.dataService.getToken();
   }
 
   ngOnInit(): void {
@@ -24,6 +29,8 @@ export class IndexComponent implements OnInit {
      this.newsDataService.getNews(data).subscribe(res => {
         if (res.code === 200) {
           this.dataList = res.data;
+        } else if (res.code === 401) {
+          this.router.navigate(['/'])
         }
       })
   }

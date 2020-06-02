@@ -7,6 +7,7 @@ import { RouterModule,Routes} from '@angular/router'
 
 import { DataService } from './services/services.service';
 import { NewsDataService } from './services/news-data.service';
+import { AuthGuard } from './guards/auth.guards';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
@@ -16,8 +17,8 @@ import { IndexComponent } from './components/index/index.component';
 
 const appRoutes:Routes = [
   {path:"",component:LoginComponent},
-  {path:"index",component:IndexComponent},
-  {path:"detail",component:DetailComponent}
+  {path:"index",component:IndexComponent, canActivate:[AuthGuard]},
+  {path:"detail",component:DetailComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -36,7 +37,8 @@ const appRoutes:Routes = [
   ],
   providers: [  // 数据提供器
     DataService,
-    NewsDataService
+    NewsDataService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
